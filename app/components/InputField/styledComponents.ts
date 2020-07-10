@@ -7,7 +7,8 @@ export const StyledTextInput = styled.TextInput``;
 export const StyledScrollView = styled.ScrollView``;
 
 export const InputFieldWrapper = styled.View`
-  padding: 5px;
+  margin: 5px;
+  flex: 1;
 `;
 
 export const InputText = styled.TextInput`
@@ -15,6 +16,7 @@ export const InputText = styled.TextInput`
   border: 1px solid darkgrey;
   border-radius: 5px;
   padding: 4px 8px;
+  margin: 2px 0px;
 `;
 
 export const InputErrorDisplay = styled.Text`

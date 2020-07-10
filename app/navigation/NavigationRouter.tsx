@@ -75,7 +75,7 @@ const handleBackPress = (
 };
 
 class NavigationRouter extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (!Actions.currentScene && Actions.currentScene !== APP_LAUNCH_SCENE) {
       // Note: As react-native-router-flux not launching LaunchScreen as first screen if user exits app in some other scene, do something like splashscreen
       console.log('CurrentScene', Actions.currentScene);

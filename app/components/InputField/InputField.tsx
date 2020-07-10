@@ -11,16 +11,21 @@ interface ErrorProps {
 }
 
 interface InputFieldProps {
+  value: string;
   placeholder: string;
+  multiline: boolean;
   secureTextEntry: boolean;
-  keyboardType: 'default' | 'numeric' | 'email-address';
+  keyboardType: any | 'default' | 'numeric' | 'email-address';
+  onChangeText: (any: string) => void;
   onBlurFn: () => void;
   onValidateFn: (any: string) => ErrorProps;
 }
 
 export default class InputField extends Component<InputFieldProps> {
   static defaultProps = {
+    multiline: false,
     secureTextEntry: false,
+    value: '',
     keyboardType: 'default',
     placeholder: 'Enter Text',
     onBlurFn: () => {
@@ -36,16 +41,15 @@ export default class InputField extends Component<InputFieldProps> {
   };
 
   state = {
-    textValue: '',
+    textValue: this.props.value,
     error: {
       shouldShowError: false,
       errorMessage: 'Required',
     },
   };
 
-  onChangeText = (text: string) => {
+  setTextValue = (text: string) => {
     this.setState({textValue: text});
-    this.doValidations();
   };
 
   onBlur = () => {
@@ -59,19 +63,20 @@ export default class InputField extends Component<InputFieldProps> {
 
   doValidations = () => {
     const {
-      props: {onValidateFn},
+      props: {onValidateFn, onChangeText},
       state: {textValue},
     } = this;
     this.setState({error: onValidateFn(textValue)});
+    onChangeText(textValue);
   };
 
   render() {
-    const {onChangeText, onBlur} = this;
+    const {setTextValue: onChangeText, onBlur} = this;
     const {
       textValue: value,
       error: {shouldShowError, errorMessage},
     } = this.state;
-    const {placeholder, keyboardType, secureTextEntry} = this.props;
+    const {placeholder, keyboardType, secureTextEntry, multiline} = this.props;
 
     return (
       <InputFieldWrapper>
@@ -83,6 +88,7 @@ export default class InputField extends Component<InputFieldProps> {
             secureTextEntry,
             placeholder,
             value,
+            multiline,
           }}
         />
         {shouldShowError && (
