@@ -16,7 +16,7 @@ export default class RadioButtonGroup extends Component<RadioButtonGroupProps> {
     return (
       <RadioButtonsWrapper>
         <LabelAsTitle>{label}</LabelAsTitle>
-        <RadioButtonRN duration={100} box={false} {...{data, selectedBtn}} />
+        <RadioButtonRN duration={10} box={false} {...{data, selectedBtn}} />
       </RadioButtonsWrapper>
     );
   }

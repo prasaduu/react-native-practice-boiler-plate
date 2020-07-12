@@ -8,6 +8,7 @@ import {RadioButtonGroup} from '../../components/RadioButtonGroup';
 import {RangeSlider} from '../../components/RangeSlider';
 import {ConsentSeeker} from '../../components/ConsentSeeker';
 import {DatePicker} from '../../components/DatePicker';
+import {goToCountryListScene} from '../../utils/NavigationUtils';
 
 import {
   styles,
@@ -151,10 +152,7 @@ export default class SignUpScene extends Component {
         />
         <ConsentSeeker {...{isAccepted, setIsAccepted}} />
         <SubmitButtonWrapper>
-          <SubmitButton
-            title="Sign Up"
-            onPress={() => console.log('SigningUp')}
-          />
+          <SubmitButton title="Sign Up" onPress={goToCountryListScene} />
         </SubmitButtonWrapper>
       </SignUpFormWrapper>
     );
